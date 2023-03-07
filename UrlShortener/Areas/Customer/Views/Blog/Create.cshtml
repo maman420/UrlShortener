@@ -1,0 +1,69 @@
+﻿@model UrlShortener.Models.BlogPostModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_Layout";
+}
+
+<h1>Create</h1>
+
+<h4>BlogPostModel</h4>
+<hr />
+@*<div class="row">
+    <div class="col-md-4">
+        <form method="post" action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label">title</label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImgSrc" class="control-label">image src</label>
+                <input asp-for="ImgSrc" class="form-control" />
+                <span asp-validation-for="ImgSrc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Content" class="control-label">content</label>
+                <input asp-for="Content" class="form-control text-area" />
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>*@
+
+@using (Html.BeginForm("Create", "Blog"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Title)
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Title)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ImgSrc)
+        @Html.TextBoxFor(m => m.ImgSrc, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ImgSrc)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Content)
+        @Html.TextBoxFor(m => m.Content, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Content)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+}
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

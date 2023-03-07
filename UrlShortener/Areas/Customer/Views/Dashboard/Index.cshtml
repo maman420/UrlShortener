@@ -1,0 +1,57 @@
+﻿@using UrlShortener.Models
+@using UrlShortener.Services
+@using Microsoft.AspNetCore.Identity
+@model UrlShortener.Models.UrlPair
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_Layout";
+}
+@inject UrlDataService _dataService
+
+@using (Html.BeginForm("Index", "Dashboard"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.LongUrl)
+        @Html.TextBoxFor(m => m.LongUrl, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.LongUrl)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ShortUrl)
+        @Html.TextBoxFor(m => m.ShortUrl, new { @class = "form-control", @disabled = "disabled" })
+    </div>
+
+    @Html.HiddenFor(m => m.User)
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+}
+
+<div>
+    <h2>History url:</h2>
+    <table class="table table table-dark table-striped-columns">
+        <tr>
+            <th scope="col">short url</th>
+            <th scope="col">full url</th>
+            <th scope="col">clicks</th>
+            <th scope="col">unique clicks</th>
+            <th scope="col"></th>
+        </tr>
+        @{
+            var list = _dataService.GetAllUrlPairForUser(User.Identity.Name);
+            foreach(UrlPair x in list)
+            {
+                    <tr>
+                        <td>https://localhost:7125/@x.ShortUrl</td>
+                        <td>@x.LongUrl</td>
+                        <td>@x.Entries.Count</td>
+                        <td>@x.Entries.GroupBy(u => u.Ip).ToList().Count</td>
+                        <td>
+                            <a href="~/Customer/Dashboard/Details?longUrl=@x.LongUrl" class="btn btn-primary">details</a>
+                        </td>
+                    </tr>
+            }
+        }
+    </table>
+</div>

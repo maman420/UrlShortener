@@ -1,0 +1,99 @@
+﻿@model UrlShortener.Models.UrlPair
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_Layout";
+}
+
+@using (Html.BeginForm("Index", "Home"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.LongUrl)
+        @Html.TextBoxFor(m => m.LongUrl, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.LongUrl)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ShortUrl)
+        @Html.TextBoxFor(m => m.ShortUrl, new { @class = "form-control", @disabled = "disabled" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+}
+
+<br />
+<section class="main-sign-up">
+    <h2>want more? sign up now!</h2>
+    <p>our signed up users get free access to see how many clicks their links got and from who!</p>
+    <button class="button button-secondary" onclick="register()">
+        SIGN UP
+    </button>
+</section>
+
+<br />
+<div id="box">
+    <div class="row">
+        <div class="column">
+            <div><img src="photos/icon-like.png"></div>
+            <h3>Easy</h3>
+            <p>ShortURL is easy and fast, enter the long link to get your shortened link</p>
+        </div>
+        <div class="column">
+            <div><img src="photos/icon-url.png"></div>
+            <h3>Shortened</h3>
+            <p>Use any link, no matter what size, ShortURL always shortens</p>
+        </div>
+        <div class="column">
+            <div><img src="photos/icon-secure.png"></div>
+            <h3>Secure</h3>
+            <p>It is fast and secure, our service have HTTPS protocol and data encryption</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <div><img src="photos/icon-statistics.png"></div>
+            <h3>Statistics</h3>
+            <p>Check the amount of clicks that your shortened URL received</p>
+        </div>
+        <div class="column">
+            <div><img src="photos/icon-unique.png"></div>
+            <h3>Reliable</h3>
+            <p>All links that try to disseminate spam, viruses and malware are deleted</p>
+        </div>
+        <div class="column">
+            <div><img src="photos/icon-responsive.png"></div>
+            <h3>Devices</h3>
+            <p>Compatible with smartphones, tablets and desktop</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .main-sign-up
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .column
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    #box
+    {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        padding: 10px;
+    }
+</style>
+<script>
+    function register()
+    {
+            window.location.href = "https://localhost:7125/Identity/Account/Register";
+    }
+</script>

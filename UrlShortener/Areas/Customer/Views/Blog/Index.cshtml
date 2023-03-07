@@ -1,0 +1,75 @@
+﻿@model IEnumerable<UrlShortener.Models.BlogPostModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<h1 class="">Url Shortener Blog</h1>
+
+<div id="box">
+    @foreach(var item in Model)
+    {
+        <div class="box-item">
+            <a href="/Customer/Blog/Details?id=@item.Id">
+                <h4>@item.Title</h4>
+                <div><img src="@item.ImgSrc" width="150px"></div>
+            </a>
+        </div>
+    }
+</div>
+
+<style>
+    .box-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 15px;
+    }
+
+    #box {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        padding: 10px;
+    }
+</style>
+
+@*
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImgSrc)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImgSrc)
+            </td>
+            <td>
+                <a href="/Customer/Blog/Edit?id=@item.Id">Edit</a> |
+                <a href="/Customer/Blog/Details?id=@item.Id">Details</a> |
+                <a href="/Customer/Blog/Delete?id=@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+*@

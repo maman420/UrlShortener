@@ -1,0 +1,26 @@
+﻿@using UrlShortener.Models
+@{
+    ViewData["Title"] = "link details";
+    Layout = "_Layout";
+}
+<h2 class="align-middle text-decoration-underline">Url Details Page</h2>
+<div>
+    <p class=""><b>short url:</b> https://localhost:7125/@ViewBag.urlPair.ShortUrl</p>
+    <p><b>long url:</b> @ViewBag.urlPair.LongUrl</p>
+    <p><b>made by user:</b> @ViewBag.urlPair.User</p>
+</div>
+<div>
+    <table class="table table-dark table-striped-columns">
+        <tr>
+            <th scope="col">entry date:</th>
+            <th scope="col">ip address:</th>
+        </tr>
+        @foreach (Entry entry in ViewBag.urlPair.Entries)
+        {
+            <tr>
+                <td>@entry.EntryDate</td>
+                <td>@entry.Ip</td>
+            </tr>
+        }
+    </table>
+</div>

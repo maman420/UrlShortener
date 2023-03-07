@@ -1,0 +1,46 @@
+﻿@model UrlShortener.Models.BlogPostModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout";
+}
+
+<div>
+    <h1>@Model.Title</h1>
+    <br />
+    <img src="@Model.ImgSrc" width="300px" />
+    <br />
+    <p>@Model.Content</p>
+    <br />
+</div>
+@*
+<h1>Details</h1>
+
+<div>
+    <h4>BlogPostModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ImgSrc)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ImgSrc)
+        </dd>
+    </dl>
+</div> *@
+<div>
+    @*<a href="/Customer/Blog/Edit?id=@Model?.Id">Edit</a> |*@
+    <a href="/Customer/Blog/Index">Back to List</a>
+</div>
